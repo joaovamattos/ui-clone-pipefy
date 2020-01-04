@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 0 15px;
-  height: 100%;
+  min-height: 100%;
   flex: 0 0 320px;
   opacity: ${props => props.done ? 0.6 : 1};
 
@@ -35,4 +35,12 @@ export const Container = styled.div`
   ul {
     margin-top: 30px;
   }
+
 `;
+
+export const NoCards = styled.p`
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #777;
+`; 

@@ -23,8 +23,18 @@ export default function Board() {
     }));  
   }
 
+  function moveToList(fromList, toList, card) {
+    setLists(produce(lists, draft => {
+      const dragged = draft[fromList].cards[card];
+
+      draft[fromList].cards.splice(card, 1);
+      draft[toList].cards.push(dragged);
+    }));
+    return lists[toList].cards.length;
+  }
+
   return (
-    <BoardContext.Provider value={{ lists, move }}>
+    <BoardContext.Provider value={{ lists, move, moveToList }}>
       <Container>
         {lists.map((list, index) => <List key={index} index={index} data={list} />)}
       </Container>
