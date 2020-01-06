@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
-import { useDrop } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 
 import { MdAdd } from "react-icons/md";
 
@@ -10,9 +10,16 @@ import Card from "../Card";
 
 import { Container, NoCards } from "./styles";
 
-export default function List({ data, index: listIndex }) {
+export default function List({ data, index: listIndex, done }) {
+  const { moveToList, moveList } = useContext(BoardContext);
+  const ref = useRef();
 
-  const { moveToList } = useContext(BoardContext);
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { type: 'LIST', listIndex },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    })
+  });
 
   const [,dropRef] = useDrop({
     accept: 'CARD',
@@ -33,11 +40,43 @@ export default function List({ data, index: listIndex }) {
     },
   });
 
+  const [,dropListRef] = useDrop({
+    accept: 'LIST',
+    hover(item, monitor) {
+      const draggedListIndex = item.listIndex;
+      const targetListIndex = listIndex;
+      
+      if (draggedListIndex === targetListIndex) {
+        return;
+      }
+      
+      const targetSize = ref.current.getBoundingClientRect();
+      const targetCenter = targetSize.width / 2;
+      
+      const draggedOffset = monitor.getClientOffset();
+      const draggedLeft = draggedOffset.x - targetSize.left;
+      
+      if (draggedListIndex < targetListIndex && draggedLeft < targetCenter){
+        return;
+      }
+
+      if (draggedListIndex > targetListIndex && draggedLeft > targetCenter){
+        return;
+      }
+
+      moveList(draggedListIndex, targetListIndex);
+
+      item.listIndex = targetListIndex;            
+    },
+  });
+
+  dragRef(dropRef(dropListRef(ref)));
+
   return (
-    <Container done={data.done} ref={dropRef}>
+    <Container done={done} ref={ref} isDragging={isDragging}>
       <header>
         <h2>{data.title}</h2>
-        {data.creatable && (
+        {listIndex === 0 && (
           <button type="button">
             <MdAdd size={24} color="#fff" />
           </button>
