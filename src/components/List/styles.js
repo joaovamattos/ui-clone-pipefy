@@ -6,8 +6,10 @@ export const Container = styled.div`
   flex: 0 0 320px;
   opacity: ${props => props.done ? 0.6 : 1};
   cursor: grab;
-  & + div {
-    border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+
+  :nth-child(1) {
+    border-left: none;
   }
 
   ${props => props.isDragging && css`
@@ -19,8 +21,8 @@ export const Container = styled.div`
     header, ul {
       opacity: 0;
     }
-  `}
 
+  `}
   header {
     display: flex;
     justify-content: space-between;
@@ -45,15 +47,15 @@ export const Container = styled.div`
       justify-content: center;
     }
   }
-
+  
   ul {
     margin-top: 30px;
   }
 `;
 
 export const NoCards = styled.p`
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    color: #777;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #777;
 `; 

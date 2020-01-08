@@ -28,14 +28,13 @@ export default function CardForm() {
 
   function handleLabels(){
      setLabels(produce((labels, draft => {
-      if(label1 && !labels.includes('#FE4A49')) draft.push('#FE4A49');
+      if(label1 && !labels.includes('#FE4A49')) console.log('checkd l1'); //draft.push('#FE4A49');
       if(label2 && !labels.includes('#FF9F1C')) draft.push('#FF9F1C');
       if(label3 && !labels.includes('#FED766')) draft.push('#FED766');
       if(label4 && !labels.includes('#59CD90')) draft.push('#59CD90');
       if(label5 && !labels.includes('#4392F1')) draft.push('#4392F1');
     })))
   }
-
 
   return (
     <Container>
@@ -63,20 +62,20 @@ export default function CardForm() {
         />
         <Label>Labels</Label>
         <div>
-          <ColorLabel color="#FE4A49" to="check1" checked={label1}>
-            <input type="checkbox" id="check1" onClick={() => setLabel1(!label1)} />
+          <ColorLabel color="#FE4A49" checked={label1}>
+            <input type="checkbox" onClick={() => setLabel1(!label1)} />
           </ColorLabel>
-          <ColorLabel color="#FF9F1C" to="check2" checked={label2}>
-            <input type="checkbox" id="check2" onClick={() => setLabel2(!label2)} />
+          <ColorLabel color="#FF9F1C" checked={label2}>
+            <input type="checkbox" onClick={() => setLabel2(!label2)} />
           </ColorLabel>
-          <ColorLabel color="#FED766" to="check3" checked={label3}>
-            <input type="checkbox" id="check3" onClick={() => setLabel3(!label3)} />
+          <ColorLabel color="#FED766" checked={label3}>
+            <input type="checkbox" onClick={() => setLabel3(!label3)} />
           </ColorLabel>
-          <ColorLabel color="#59CD90" to="check4" checked={label4}>
-            <input type="checkbox" id="check4" onClick={() => setLabel4(!label4)} />
+          <ColorLabel color="#59CD90" checked={label4}>
+            <input type="checkbox" onClick={() => setLabel4(!label4)} />
           </ColorLabel>
-          <ColorLabel color="#4392F1" to="check5" checked={label5}>
-            <input type="checkbox" id="check5" onClick={() => setLabel5(!label5)} />
+          <ColorLabel color="#4392F1" checked={label5}>
+            <input type="checkbox" onClick={() => setLabel5(!label5)} />
           </ColorLabel>
         </div>
         <Button type="submit">Criar tarefa</Button>

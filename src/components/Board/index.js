@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import produce from 'immer';
 
+import { MdAdd } from "react-icons/md";
+
 import { loadLists } from '../../services/api';
+import { NoCards } from '../List/styles';
 
 import BoardContext from './context';
 
 import List from '../List';
 
-import { Container } from './styles';
+import { Container, NewListButton } from './styles';
 
 const data = loadLists();
 
@@ -46,6 +49,10 @@ export default function Board() {
     <BoardContext.Provider value={{ lists, move, moveToList, moveList }}>
       <Container>
         {lists.map((list, index) => <List key={list.id} index={index} data={list} done={index === lists.length - 1 && index > 0} />)}
+        <NewListButton>
+          <MdAdd size={36} color="rgba(0, 0, 0, 0.2)" />
+          <NoCards style={{marginTop: 10}} >Nova Lista incrível</NoCards>
+        </NewListButton>
       </Container>
     </BoardContext.Provider>
   );

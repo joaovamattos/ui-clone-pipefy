@@ -10,6 +10,14 @@ export const Container = styled.div`
   border-radius: 4px;
   right: 20px;
   z-index: 10;
+
+  
+  @media (max-width: 440px) {
+   height: calc(100% - 80px);
+   width: 100%;
+   right: 0;   
+   bottom: 0;
+  }
 `;
 
 export const Form = styled.form`
