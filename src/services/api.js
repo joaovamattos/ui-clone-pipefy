@@ -70,7 +70,7 @@ export function loadLists() {
         {
           id: 9,
           content: 'Ajustes na biblioteca unform',
-          labels: [],
+          labels: ["#FE4A49", "#FF9F1C", "#FED766", "#59CD90", "#4392F1"],
         }
       ]
     },

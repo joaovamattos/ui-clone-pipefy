@@ -4,8 +4,7 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
-    padding: 30px 0;
+    padding: 30px 20px;
     min-height: calc(100% - 80px);
-    margin: 0 20px;
   `;
   
