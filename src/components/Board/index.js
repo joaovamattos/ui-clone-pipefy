@@ -5,17 +5,18 @@ import { MdAdd } from "react-icons/md";
 
 import { loadLists } from '../../services/api';
 import { NoCards } from '../List/styles';
+import { Container, NewListButton } from './styles';
 
 import BoardContext from './context';
 
 import List from '../List';
-
-import { Container, NewListButton } from './styles';
+import ListForm from '../ListForm';
 
 const data = loadLists();
 
 export default function Board() {
   const [lists, setLists] = useState(data);
+  const [showForm, setShowForm] = useState(false);
 
   function move(fromList, toList, from, to) {
     setLists(produce(lists, draft => {
@@ -46,14 +47,15 @@ export default function Board() {
   }
 
   return (
-    <BoardContext.Provider value={{ lists, move, moveToList, moveList }}>
+    <BoardContext.Provider value={{ setLists, lists, move, moveToList, moveList, setShowForm }}>
       <Container>
         {lists.map((list, index) => <List key={list.id} index={index} data={list} done={index === lists.length - 1 && index > 0} />)}
-        <NewListButton>
+        <NewListButton onClick={() => setShowForm(true)}>
           <MdAdd size={36} color="rgba(0, 0, 0, 0.2)" />
           <NoCards style={{marginTop: 10}} >Nova Lista incrível</NoCards>
         </NewListButton>
       </Container>
+     {showForm &&  <ListForm />}
     </BoardContext.Provider>
   );
 }

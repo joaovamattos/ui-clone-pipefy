@@ -24,3 +24,4 @@ export const NewListButton = styled.button`
     transition: .3s;
   }
 `;
+

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 420px;
-  height: 500px;
+  height: ${props => props.hgt};
   
   position: fixed;
   bottom: 20px;
