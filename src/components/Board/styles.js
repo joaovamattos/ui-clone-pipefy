@@ -5,7 +5,18 @@
     width: 100%;
     overflow-x: scroll;
     padding: 30px 20px;
-    min-height: calc(100% - 80px);
+    height: calc(100% - 80px);
+
+    /* width */
+    ::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
   `;
   
   

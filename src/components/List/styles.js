@@ -2,11 +2,13 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   padding: 0 15px;
-  min-height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
   flex: 0 0 320px;
   opacity: ${props => props.done ? 0.6 : 1};
   cursor: grab;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
+  margin-right: 5px;
 
   :nth-child(1) {
     border-left: none;
@@ -50,6 +52,17 @@ export const Container = styled.div`
   
   ul {
     margin-top: 30px;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
   }
 `;
 

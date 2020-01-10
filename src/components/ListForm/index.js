@@ -44,7 +44,7 @@ export default function ListForm() {
           <MdClose color="#999" size={20} />
         </CloseButton>
         <Title>{title ? title : 'Nova lista incrível'}</Title>
-        <Label>Nova lista</Label>
+        <Label>Lista *</Label>
         <Input placeholder="O melhor nome para sua lista" value={title} onChange={event => setTitle(event.target.value)} />
         <Button>Criar lista</Button>
       </Form>
